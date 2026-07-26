@@ -2,7 +2,9 @@
 
 Displays your GitHub contribution graph as a desktop widget, themed with your Noctalia colors.
 
-![preview](preview.png)
+| Full graph | Compact stats |
+|---|---|
+| ![full graph layout](preview.png) | ![compact stats layout](preview-compact.png) |
 
 ## Data Sources
 
@@ -37,15 +39,13 @@ Displays your GitHub contribution graph as a desktop widget, themed with your No
 
 ## Installation
 
-From the Noctalia plugin browser: Settings → Plugins, search for "GitHub Contributions" and install.
-
-Manual install:
-
 ```bash
 git clone https://github.com/xevrion/noctalia-github-contributions ~/.config/noctalia/plugins/github-contributions
 ```
 
-Then enable the plugin in Settings → Plugins, and add the widget in Settings → Desktop Widgets.
+Restart the shell, enable the plugin in Settings → Plugins, and add the widget in Settings → Desktop Widgets. Set your GitHub username in the plugin's settings.
+
+To update later: `git -C ~/.config/noctalia/plugins/github-contributions pull`
 
 ## License
 
