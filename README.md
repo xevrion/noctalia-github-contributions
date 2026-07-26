@@ -2,6 +2,8 @@
 
 Displays your GitHub contribution graph as a desktop widget, themed with your Noctalia colors.
 
+This is the plugin for Noctalia **v4**. On Noctalia v5? Use [noctalia-v5-plugins](https://github.com/xevrion/noctalia-v5-plugins) instead.
+
 | Full graph | Compact stats |
 |---|---|
 | ![full graph layout](preview.png) | ![compact stats layout](preview-compact.png) |
