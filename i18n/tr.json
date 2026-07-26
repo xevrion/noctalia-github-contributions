@@ -4,6 +4,8 @@
     "total": "Son bir yılda {total} katkı",
     "streak": "{count} günlük seri",
     "todayCount": "bugün {count}",
+    "streakLabel": "günlük seri",
+    "contributionsLabel": "katkı",
     "cellNone": "{date} tarihinde katkı yok",
     "cellSome": "{date} tarihinde {count} katkı",
     "cellSomeUnknown": "{date} tarihinde katkılar"
@@ -22,6 +24,12 @@
     "token": {
       "label": "Kişisel Erişim Belirteci (isteğe bağlı)",
       "desc": "Belirteç olmadan herkese açık katkılar profilinizden okunur. Özel katkıları dahil etmek için 'read:user' kapsamlı bir belirteç ekleyin"
+    },
+    "layout": {
+      "label": "Düzen",
+      "desc": "Tam grafik veya daha küçük ızgaralı kompakt istatistik kartı",
+      "graph": "Tam grafik",
+      "stats": "Kompakt istatistikler"
     },
     "weeksShown": {
       "label": "Gösterilen Haftalar",

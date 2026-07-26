@@ -4,6 +4,8 @@
     "total": "{total} contributions in the last year",
     "streak": "{count} day streak",
     "todayCount": "{count} today",
+    "streakLabel": "day streak",
+    "contributionsLabel": "contributions",
     "cellNone": "No contributions on {date}",
     "cellSome": "{count} contributions on {date}",
     "cellSomeUnknown": "Contributions on {date}"
@@ -22,6 +24,12 @@
     "token": {
       "label": "Personal Access Token (optional)",
       "desc": "Without a token, public contributions are read from your profile. Add a token with 'read:user' scope to include private contributions"
+    },
+    "layout": {
+      "label": "Layout",
+      "desc": "Full graph or a compact stat card with a smaller grid",
+      "graph": "Full graph",
+      "stats": "Compact stats"
     },
     "weeksShown": {
       "label": "Weeks Shown",

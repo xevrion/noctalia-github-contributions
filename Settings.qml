@@ -9,6 +9,7 @@ ColumnLayout {
 
   property string editUsername: ""
   property string editToken: ""
+  property string editLayout: "graph"
   property int editWeeksShown: 52
   property int editRefreshInterval: 60
   property bool editShowTotal: true
@@ -38,6 +39,18 @@ ColumnLayout {
     Layout.fillWidth: true
     Layout.topMargin: Style.marginS
     Layout.bottomMargin: Style.marginS
+  }
+
+  NComboBox {
+    Layout.fillWidth: true
+    label: pluginApi?.tr("settings.layout.label")
+    description: pluginApi?.tr("settings.layout.desc")
+    model: [
+      { key: "graph", name: pluginApi?.tr("settings.layout.graph") },
+      { key: "stats", name: pluginApi?.tr("settings.layout.stats") }
+    ]
+    currentKey: root.editLayout
+    onSelected: key => root.editLayout = key
   }
 
   ColumnLayout {
@@ -99,6 +112,7 @@ ColumnLayout {
 
     pluginApi.pluginSettings.username = root.editUsername.trim()
     pluginApi.pluginSettings.token = root.editToken.trim()
+    pluginApi.pluginSettings.layout = root.editLayout
     pluginApi.pluginSettings.weeksShown = root.editWeeksShown
     pluginApi.pluginSettings.refreshInterval = root.editRefreshInterval
     pluginApi.pluginSettings.showTotal = root.editShowTotal
@@ -115,6 +129,7 @@ ColumnLayout {
 
     root.editUsername = settings?.username || defaults?.username || ""
     root.editToken = settings?.token || defaults?.token || ""
+    root.editLayout = settings?.layout || defaults?.layout || "graph"
     root.editWeeksShown = settings?.weeksShown ?? defaults?.weeksShown ?? 52
     root.editRefreshInterval = settings?.refreshInterval ?? defaults?.refreshInterval ?? 60
     root.editShowTotal = settings?.showTotal ?? defaults?.showTotal ?? true

@@ -20,6 +20,7 @@
     "defaultSettings": {
       "username": "",
       "token": "",
+      "layout": "graph",
       "weeksShown": 52,
       "refreshInterval": 60,
       "showTotal": true,

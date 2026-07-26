@@ -18,6 +18,7 @@ Displays your GitHub contribution graph as a desktop widget, themed with your No
 
 **Desktop Widget**
 - Contribution heatmap colored with the active Noctalia accent
+- Two layouts: the full graph, or a compact stat card with big streak and total numbers beside a 13-week grid
 - Total contributions and current streak
 - Month and weekday labels
 - Today's contribution count next to the username
@@ -26,6 +27,7 @@ Displays your GitHub contribution graph as a desktop widget, themed with your No
 **Settings**
 - GitHub username
 - Optional personal access token
+- Layout: full graph or compact stats
 - Weeks shown (4-53)
 - Refresh interval (15-360 minutes)
 - Toggles for totals and labels

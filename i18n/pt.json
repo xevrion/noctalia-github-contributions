@@ -4,6 +4,8 @@
     "total": "{total} contribuições no último ano",
     "streak": "sequência de {count} dias",
     "todayCount": "{count} hoje",
+    "streakLabel": "dias de sequência",
+    "contributionsLabel": "contribuições",
     "cellNone": "Sem contribuições em {date}",
     "cellSome": "{count} contribuições em {date}",
     "cellSomeUnknown": "Contribuições em {date}"
@@ -22,6 +24,12 @@
     "token": {
       "label": "Token de acesso pessoal (opcional)",
       "desc": "Sem token, as contribuições públicas são lidas do seu perfil. Adicione um token com escopo 'read:user' para incluir contribuições privadas"
+    },
+    "layout": {
+      "label": "Layout",
+      "desc": "Gráfico completo ou cartão compacto de estatísticas com uma grade menor",
+      "graph": "Gráfico completo",
+      "stats": "Estatísticas compactas"
     },
     "weeksShown": {
       "label": "Semanas exibidas",

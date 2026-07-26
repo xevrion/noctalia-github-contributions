@@ -19,10 +19,13 @@ DraggableDesktopWidget {
   readonly property bool hasData: mainInstance?.hasData ?? false
   readonly property var allDays: mainInstance?.days ?? []
 
+  readonly property bool compact: (cfg.layout ?? defaults.layout ?? "graph") === "stats"
+  readonly property int effectiveWeeks: compact ? Math.min(weeksShown, 13) : weeksShown
+
   readonly property var slicedDays: {
     if (!allDays.length) return []
     var lastWd = weekdayOf(allDays[allDays.length - 1].date)
-    var keep = (weeksShown - 1) * 7 + lastWd + 1
+    var keep = (effectiveWeeks - 1) * 7 + lastWd + 1
     return allDays.length > keep ? allDays.slice(allDays.length - keep) : allDays
   }
   readonly property int padOffset: slicedDays.length ? weekdayOf(slicedDays[0].date) : 0
@@ -45,10 +48,11 @@ DraggableDesktopWidget {
 
   readonly property real cellStep: 13 * widgetScale
   readonly property real cellSize: 10 * widgetScale
-  readonly property real dayLabelWidth: showLabels ? 30 * widgetScale : 0
+  readonly property real dayLabelWidth: showLabels && !compact ? 30 * widgetScale : 0
+  readonly property real statsWidth: compact && showTotal ? statsColumn.implicitWidth + Style.marginM * widgetScale : 0
   readonly property real contentMargin: Style.marginL * widgetScale
 
-  implicitWidth: hasData ? dayLabelWidth + columns * cellStep - (3 * widgetScale) + contentMargin * 2 : 240 * widgetScale
+  implicitWidth: hasData ? dayLabelWidth + statsWidth + columns * cellStep - (3 * widgetScale) + contentMargin * 2 : 240 * widgetScale
   implicitHeight: contentColumn.implicitHeight + contentMargin * 2
   width: implicitWidth
   height: implicitHeight
@@ -90,7 +94,7 @@ DraggableDesktopWidget {
     // Total + streak header
     RowLayout {
       Layout.fillWidth: true
-      visible: root.showTotal && root.hasData
+      visible: !root.compact && root.showTotal && root.hasData
       spacing: Style.marginM * root.widgetScale
 
       NText {
@@ -113,7 +117,7 @@ DraggableDesktopWidget {
     // Month labels
     Item {
       Layout.fillWidth: true
-      visible: root.showLabels && root.hasData
+      visible: !root.compact && root.showLabels && root.hasData
       implicitHeight: Style.fontSizeXS * root.widgetScale * 1.6
 
       Repeater {
@@ -127,13 +131,44 @@ DraggableDesktopWidget {
       }
     }
 
-    // Heatmap grid with weekday labels
+    // Heatmap grid with stats or weekday labels alongside
     RowLayout {
       visible: root.hasData
-      spacing: 0
+      spacing: root.compact ? Style.marginM * root.widgetScale : 0
+
+      ColumnLayout {
+        id: statsColumn
+        visible: root.compact && root.showTotal
+        Layout.alignment: Qt.AlignVCenter
+        spacing: 0
+
+        NText {
+          text: (root.mainInstance?.currentStreak ?? 0).toString()
+          pointSize: Style.fontSizeXXL * 1.4 * root.widgetScale
+          font.weight: Font.Bold
+          color: Color.mPrimary
+        }
+        NText {
+          text: pluginApi?.tr("desktop.streakLabel")
+          pointSize: Style.fontSizeXS * root.widgetScale
+          color: Color.mOnSurfaceVariant
+        }
+        Item { implicitHeight: Style.marginM * root.widgetScale }
+        NText {
+          text: Number(root.mainInstance?.totalContributions ?? 0).toLocaleString(Qt.locale(), 'f', 0)
+          pointSize: Style.fontSizeXXL * 1.4 * root.widgetScale
+          font.weight: Font.Bold
+          color: Color.mOnSurface
+        }
+        NText {
+          text: pluginApi?.tr("desktop.contributionsLabel")
+          pointSize: Style.fontSizeXS * root.widgetScale
+          color: Color.mOnSurfaceVariant
+        }
+      }
 
       Item {
-        visible: root.showLabels
+        visible: !root.compact && root.showLabels
         implicitWidth: root.dayLabelWidth
         implicitHeight: gridArea.implicitHeight
 
@@ -183,7 +218,7 @@ DraggableDesktopWidget {
       }
     }
 
-    // Username and today's count
+    // Hovered day details / username
     NText {
       Layout.fillWidth: true
       visible: root.hasData
